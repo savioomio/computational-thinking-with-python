@@ -18,14 +18,14 @@ Avaliação final semestral da FIAP — um desafio hands-on com temas de impacto
 
 ```
 Média do Semestre = (média dos 2 melhores CPs) × 0.2
-                  + (SP1 + SP2) × 0.1
+                  + (SP1 + SP2) × 0.2
                   + GS × 0.6
 ```
 
 | Componente               | Peso |
 |--------------------------|------|
 | Média dos 2 melhores CPs | 20%  |
-| SP1 + SP2 (soma)         | 10%  |
+| SP1 + SP2 (soma)         | 20%  |
 | Global Solution          | 60%  |
 
 > O GS domina a nota com 60% de peso — é a avaliação que mais importa no semestre.
@@ -64,7 +64,7 @@ Nota Final <  6.0  →  Reprovado ❌
 | CPs | 2, 4, 10 → descarta o 2 → média(4, 10) = **7.0** |
 | SPs | 9 + 1 = **10** |
 | GS  | **9** |
-| **M1** | (7.0 × 0.2) + (10 × 0.1) + (9 × 0.6) = 1.4 + 1.0 + 5.4 = **7.8** |
+| **M1** | (7.0 × 0.2) + (10 × 0.2) + (9 × 0.6) = 1.4 + 1.0 + 5.4 = **7.8** |
 
 **Semestre 2**
 | Dado | Valor |
@@ -72,7 +72,7 @@ Nota Final <  6.0  →  Reprovado ❌
 | CPs | 5, 8, 10 → descarta o 5 → média(8, 10) = **9.0** |
 | SPs | 5 + 4 = **9** |
 | GS  | **10** |
-| **M2** | (9.0 × 0.2) + (9 × 0.1) + (10 × 0.6) = 1.8 + 0.9 + 6.0 = **8.7** |
+| **M2** | (9.0 × 0.2) + (9 × 0.2) + (10 × 0.6) = 1.8 + 0.9 + 6.0 = **8.7** |
 
 **Nota Final**
 ```
