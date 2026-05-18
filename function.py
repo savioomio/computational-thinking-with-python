@@ -94,3 +94,40 @@ def pesoIdeal(altura, sexo):
     return "Genero invalido"
 
 # print(pesoIdeal(1.70, "M"))
+
+
+# -------------------- 
+# Aula
+
+# 3 - Lista
+
+import random
+
+def dados(n):
+  dado = [0,0,0,0,0,0]
+  for i in range(n):
+    x = random.randint(1, 6)
+    dado[x-1] += 1
+
+  for i in range(6):
+    print(f"O numero {i+1} foi sorteado {dado[i]} vezes")
+
+
+# dados(6)
+
+# 4 - Lista 
+
+# x = (-b ± √(b² - 4ac)) / (2a)
+# a, b, c: coeficientes da equação
+# Δ (delta) = b² - 4ac
+
+def bhaskara(a, b, c):
+  delta = b**2 - 4*a*c
+  if delta < 0:
+    return "chora"
+  x1 = (-b + (delta ** 0.5)) / (2*a)
+  x2 = (-b - (delta ** 0.5)) / (2*a)
+
+  return f"O delta é {delta},\nx1: {x1:.2f} \nx2: {x2:.2f}"
+
+# print(bhaskara(4, -4, -5)) 
