@@ -303,7 +303,90 @@ df["dominio"] = df["email"].apply(lambda e: e.split("@")[1])
 
 ---
 
-## 4. Exemplo completo (resumo da prova em 10 linhas)
+## 4. POO (Programação Orientada a Objetos)
+
+Classe = molde · Objeto = instância criada a partir do molde.
+
+```python
+class Carro:
+    rodas = 4                                  # atributo de CLASSE (compartilhado)
+
+    def __init__(self, marca, modelo, ano):    # construtor: roda ao criar o objeto
+        self.marca = marca                     # atributos de INSTÂNCIA
+        self.modelo = modelo
+        self.ano = ano
+
+    def idade(self, ano_atual=2026):           # método: sempre recebe self
+        return ano_atual - self.ano
+
+    def __str__(self):                         # o que print(objeto) mostra
+        return f"{self.marca} {self.modelo} ({self.ano})"
+
+
+c = Carro("Fiat", "Argo", 2021)
+c.idade()          # 5
+print(c)           # Fiat Argo (2021)
+c.__dict__         # {'marca': 'Fiat', 'modelo': 'Argo', 'ano': 2021}
+```
+
+### Herança e polimorfismo
+
+```python
+class Veiculo:
+    def __init__(self, marca):
+        self.marca = marca
+
+    def descricao(self):
+        return f"Veículo {self.marca}"
+
+
+class Moto(Veiculo):                            # Moto herda de Veiculo
+    def __init__(self, marca, cilindradas):
+        super().__init__(marca)                 # chama o construtor da classe pai
+        self.cilindradas = cilindradas
+
+    def descricao(self):                        # sobrescreve (polimorfismo)
+        return f"Moto {self.marca} {self.cilindradas}cc"
+```
+
+### Encapsulamento
+
+```python
+class Conta:
+    def __init__(self, saldo):
+        self._saldo = saldo        # _ = "protegido" (convenção)
+        self.__senha = "1234"      # __ = "privado" (name mangling)
+
+    @property
+    def saldo(self):               # acessa como conta.saldo (sem parênteses)
+        return self._saldo
+
+    def sacar(self, valor):
+        if valor > self._saldo:
+            raise ValueError("Saldo insuficiente")
+        self._saldo -= valor
+```
+
+### POO + Pandas (padrão das suas aulas)
+
+```python
+carros = [Carro("Fiat", "Argo", 2021), Carro("VW", "Nivus", 2022)]
+
+# lista de objetos → lista de dicts → DataFrame
+df = pd.DataFrame([c.__dict__ for c in carros])        # vars(c) também funciona
+
+# valores calculados pelos métodos
+df["idade"] = [c.idade() for c in carros]
+df["faixa"] = df["ano"].apply(lambda a: "Antigo" if a < 2000 else "Novo")
+```
+
+> Pegadinhas de POO: esquecer o `self` no método · esquecer `super().__init__()` na
+> subclasse · `__init__` **não** retorna nada · `self.x` (instância) ≠ `x` (variável local)
+> · atributo de classe é compartilhado por todos os objetos.
+
+---
+
+## 5. Exemplo completo (resumo da prova em 10 linhas)
 
 ```python
 import requests
@@ -320,7 +403,7 @@ print(df.groupby("userId")["completed"].mean().sort_values(ascending=False).head
 
 ---
 
-## 5. Pegadinhas clássicas
+## 6. Pegadinhas clássicas
 
 - `df[["a", "b"]]` (colchetes **duplos**) para várias colunas; `df["a", "b"]` dá erro.
 - Filtro combinado: `&` / `|` com **parênteses** — não `and` / `or`.
@@ -336,7 +419,7 @@ print(df.groupby("userId")["completed"].mean().sort_values(ascending=False).head
 
 ---
 
-## 6. Exercícios para treinar
+## 7. Exercícios para treinar
 
 1. Dado `df` com colunas `produto`, `preco`, `qtd`: crie a coluna `total = preco * qtd`.
 2. Filtre os produtos com `total > 100` **e** `qtd < 10`, ordenados por `total` decrescente.
@@ -346,5 +429,7 @@ print(df.groupby("userId")["completed"].mean().sort_values(ascending=False).head
 6. Consuma `https://jsonplaceholder.typicode.com/users`, monte um DataFrame só com `name`, `email` e `city` (use `json_normalize`).
 7. Consuma `/posts`, conte quantos posts cada `userId` tem (`value_counts` ou `groupby`).
 8. Faça um `POST` em `/posts` com um JSON seu e imprima o status code (deve ser 201).
+9. Crie a classe `Produto` (`nome`, `preco`, `qtd`) com método `total()` e `__str__`; crie 3 objetos e monte um DataFrame com `__dict__`.
+10. Crie `ProdutoPerecivel(Produto)` com `validade` e sobrescreva `__str__` usando `super()`.
 
 Gabarito em [`revisao_pratica.py`](revisao_pratica.py).

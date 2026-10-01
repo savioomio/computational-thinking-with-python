@@ -60,6 +60,45 @@ df_nulos = pd.DataFrame({"nota": [8.0, None, 6.0]})
 print(df_nulos["nota"].fillna(df_nulos["nota"].mean()))
 
 
+# ------------------------------------------------------------------- POO
+print("\n=== POO ===")
+
+
+class Produto:
+    def __init__(self, nome, preco, qtd):
+        self.nome = nome
+        self.preco = preco
+        self.qtd = qtd
+
+    def total(self):
+        return self.preco * self.qtd
+
+    def __str__(self):
+        return f"{self.nome} (R$ {self.preco:.2f} x {self.qtd})"
+
+
+class ProdutoPerecivel(Produto):
+    def __init__(self, nome, preco, qtd, validade):
+        super().__init__(nome, preco, qtd)
+        self.validade = validade
+
+    def __str__(self):
+        return f"{super().__str__()} - vence em {self.validade}"
+
+
+itens = [
+    Produto("Caneta", 2.5, 100),
+    Produto("Mochila", 90.0, 5),
+    ProdutoPerecivel("Leite", 5.0, 30, "2026-12-01"),
+]
+for item in itens:
+    print(item)  # polimorfismo: cada classe usa o seu __str__
+
+df_obj = pd.DataFrame([i.__dict__ for i in itens])
+df_obj["total"] = [i.total() for i in itens]
+print(df_obj)
+
+
 # ------------------------------------------------------------------- API
 print("\n=== API ===")
 try:
