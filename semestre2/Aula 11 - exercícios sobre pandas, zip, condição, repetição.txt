@@ -1,0 +1,43 @@
+﻿Ex.1
+
+nomes = ['A', 'B', 'C', 'D']
+idades = [35, 24, 45, 27]
+
+for nome, idade in zip(nomes, idades):
+  if idade > 30:
+    print(idade)
+	
+Ex.2
+
+import pandas as pd
+
+df = pd.DataFrame({
+    'Nomes': ['A', 'B', 'C', 'D'], 
+    'Salario': [3500, 2400, 4500, 2700]})
+
+status_salarios = []
+
+for nome, salario in zip(df['Nomes'], df['Salario']):
+  if salario > 10000:
+    status_salarios.append('Alto')
+  else:
+    status_salarios.append('Baixo')
+
+df['Status_Salario'] = status_salarios
+
+Ex.3
+
+import pandas as pd
+
+df = pd.DataFrame({
+    "Vendedor": ["Ana", "Bruno", "Carlos", "Daniela"],
+    "Vendas": [12000, 8500, 15000, 7000],
+    "Meta": [10000, 10000, 12000, 8000]
+})
+
+1. Crie a coluna status para verificar se os funcionários atingiram a meta ou não.
+
+Venda > meta - meta atingida
+Venda < meta - abaixo da meta
+
+
